@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using PasswordManager.UILogic.Helpers;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Xaml.Input;
+using Windows.System;
 
 namespace PasswordManager.UILogic.ViewModels
 {
@@ -28,6 +30,21 @@ namespace PasswordManager.UILogic.ViewModels
             SaveCommand = new DelegateCommand(() => Save(), () => CanSave);
             CopyToClipboardCommand = new DelegateCommand(() => CopyToClipboard());
             GoBackCommand = new DelegateCommand(() => navigationService.GoBack(), () => navigationService.CanGoBack());
+
+            KeyPressAction = (eventArgs) =>
+                {
+                    switch (eventArgs.Key)
+                    {
+                        case VirtualKey.Enter:
+                            {
+                                if(CanSave)
+                                    SaveCommand.Execute();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                };
         }
 
         private void Save()
@@ -102,6 +119,8 @@ namespace PasswordManager.UILogic.ViewModels
                 SaveCommand.RaiseCanExecuteChanged();
             }
         }
+
+        public Action<KeyRoutedEventArgs> KeyPressAction { get; set; }
 
         public DelegateCommand SaveCommand { get; set; }
 
