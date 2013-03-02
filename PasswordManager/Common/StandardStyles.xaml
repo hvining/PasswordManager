@@ -949,13 +949,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="FilterAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Filter"/>
         <Setter Property="Content" Value="&#xE16E;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="CopyAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="CopyAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Copy"/>
         <Setter Property="Content" Value="&#xE16F;"/>
     </Style>
-    <Style x:Key="Emoji2AppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <!--<Style x:Key="Emoji2AppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="Emoji2AppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Emoji2"/>
         <Setter Property="Content" Value="&#xE170;"/>

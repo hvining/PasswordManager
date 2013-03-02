@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PasswordManager.UILogic.Helpers;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace PasswordManager.UILogic.ViewModels
 {
@@ -47,9 +48,11 @@ namespace PasswordManager.UILogic.ViewModels
 
             AddNewPasswordCommand = new DelegateCommand(() => AddNewPassword());
             DeleteCommand = new DelegateCommand(() => Delete());
+            CopyToClipboardCommand = new DelegateCommand(() => CopyToClipboard());
             GoBackCommand = new DelegateCommand(() => _navigationService.GoBack(), () => _navigationService.CanGoBack());
         }
 
+        #region Properties
         public ObservableCollection<PasswordGroup> PasswordGroups
         {
             get { return _passwordGroups; }
@@ -66,8 +69,10 @@ namespace PasswordManager.UILogic.ViewModels
             {
                 SetProperty(ref _selectedPasswordItem, value);
             }
-        }
+        } 
+        #endregion
 
+        #region Commands
         public DelegateCommand AddNewPasswordCommand { get; set; }
 
         private void AddNewPassword()
@@ -84,6 +89,16 @@ namespace PasswordManager.UILogic.ViewModels
 
             GetData();
         }
+
+        public DelegateCommand CopyToClipboardCommand { get; set; }
+
+        private void CopyToClipboard()
+        {
+            DataPackage clipboardPackage = new DataPackage();
+            clipboardPackage.SetText(SelectedPasswordItem.Password);
+            Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(clipboardPackage);
+        }
+        #endregion
 
         public Action<object> EditPasswordAction
         {

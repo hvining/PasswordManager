@@ -95,11 +95,16 @@
                 IsOpen="True"
                 Background="GreenYellow">
             <Grid>
-                <StackPanel HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left">
                     <Button Command="{Binding DeleteCommand}"
                             Visibility="{Binding SelectedPasswordItem, Converter={StaticResource ObjectToVisibilityConverter}}"
                             Style="{StaticResource DeleteAppBarButtonStyle}"
                             AutomationProperties.Name="Delete Password"/>
+                    <Button Command="{Binding CopyToClipboardCommand}"
+                            Visibility="{Binding SelectedPasswordItem, Converter={StaticResource ObjectToVisibilityConverter}}"
+                            Style="{StaticResource CopyAppBarButtonStyle}"
+                            AutomationProperties.Name="Copy Password"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right">
                     <Button Command="{Binding AddNewPasswordCommand}"
