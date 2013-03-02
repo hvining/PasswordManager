@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PasswordManager.UILogic.Helpers;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace PasswordManager.UILogic.ViewModels
 {
@@ -25,6 +26,7 @@ namespace PasswordManager.UILogic.ViewModels
             _passwordRepository = passwordRepository;
 
             SaveCommand = new DelegateCommand(() => Save(), () => CanSave);
+            CopyToClipboardCommand = new DelegateCommand(() => CopyToClipboard());
             GoBackCommand = new DelegateCommand(() => navigationService.GoBack(), () => navigationService.CanGoBack());
         }
 
@@ -40,6 +42,14 @@ namespace PasswordManager.UILogic.ViewModels
             _passwordRepository.SavePassword(password);
 
             _navigationService.GoBack();
+        }
+
+        private void CopyToClipboard()
+        {
+            DataPackage clipboardPackage = new DataPackage();
+            clipboardPackage.SetText(_password);
+
+            Clipboard.SetContent(clipboardPackage);
         }
 
         public int Id
@@ -97,6 +107,8 @@ namespace PasswordManager.UILogic.ViewModels
 
         public DelegateCommand GoBackCommand { get; set; }
 
+        public DelegateCommand CopyToClipboardCommand { get; set; }
+
         void INavigationAware.OnNavigatedTo(object navigationParameter, Windows.UI.Xaml.Navigation.NavigationMode navigationMode, Dictionary<string, object> viewState)
         {
             var viewmodel = navigationParameter as PasswordItemViewModel;
@@ -124,6 +136,5 @@ namespace PasswordManager.UILogic.ViewModels
                             String.IsNullOrWhiteSpace(Password));
             }
         }
-
     }
 }
