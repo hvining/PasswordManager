@@ -43,6 +43,8 @@
                   IsItemClickEnabled="True"
                   SelectedItem="{Binding SelectedPasswordItem, Mode=TwoWay}"
                   behav:ListViewItemClickedToAction.Action="{Binding EditPasswordAction}"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
                   SelectionMode="Single"
                   Margin="0,-3,0,0"
                   Padding="116,0,40,46"
@@ -68,16 +70,27 @@
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
                             <Border Width="200"
+                                    HorizontalAlignment="Left"
                                     BorderBrush="DarkGray"
                                     BorderThickness="0,0,0,1">
-                                <TextBlock Text="{Binding GroupKey}"
-                                           Style="{StaticResource SubheaderTextStyle}"
-                                           Margin="0,0,0,10"/>
+                                <TextBlock Text="{Binding GroupKey}" 
+                                           FontSize="18" 
+                                           FontFamily="Segoe UI Light"/>
                             </Border>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <VariableSizedWrapGrid Orientation="Vertical" MaximumRowsOrColumns="4"/>
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
                 </GroupStyle>
             </GridView.GroupStyle>
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
             </GridView>
         
         <Button Command="{Binding AddNewPasswordCommand}"
