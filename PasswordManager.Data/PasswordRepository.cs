@@ -37,7 +37,7 @@ namespace PasswordManager.Data
             using(SQLiteConnection context = new SQLiteConnection(_connectionString))
             {
                 IEnumerable<PasswordGroup> group = from p in context.Table<PasswordItem>()
-                                                   group p by p.AccountName.Substring(0,1) into pg
+                                                   group p by p.AccountName.Substring(0,1).ToUpper() into pg
                                                    orderby pg.Key ascending
                                                    select new PasswordGroup()
                                                    {
