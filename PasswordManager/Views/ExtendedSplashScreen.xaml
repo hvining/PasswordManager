@@ -1,0 +1,24 @@
+﻿<Grid Background="GreenYellow"
+      x:Class="PasswordManager.Views.ExtendedSplashScreen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:PasswordManager.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      d:DesignWidth="1366" d:DesignHeight="768">
+    <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition Height="180"/>
+    </Grid.RowDefinitions>
+    <Canvas>
+        <Image x:Name="splashImage" 
+               Source="ms-appx:///Assets/SplashScreen.png"/>  
+    </Canvas>
+    <StackPanel Grid.Row="1">
+        <ProgressRing IsActive="True"
+                      Width="40"
+                      Height="40"
+                      Foreground="White"/>
+    </StackPanel>
+    </Grid>
